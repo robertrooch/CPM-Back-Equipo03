@@ -25,5 +25,9 @@ class Pert {
         this.actividades.push(actividad);
     }
 
+    eliminarActividad(id) {
+        this.actividades = this.actividades.filter(act => act.id !== id);
+    }
+
 }
 module.exports = Pert;

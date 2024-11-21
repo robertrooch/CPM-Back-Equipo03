@@ -29,5 +29,20 @@ class Pert {
         this.actividades = this.actividades.filter(act => act.id !== id);
     }
 
+    locateRect(nombre) {
+        return this.actividades.find(actividad => actividad.nombre === nombre) || null;
+    }
+
+    generarDiagrama() {
+        let tiempoFinal = 0;
+        this.actividades.forEach(actividad => {
+            if (!actividad.efinish) {
+                this.earlyFinish(actividad);
+                tiempoFinal = Math.max(tiempoFinal, actividad.efinish);
+            }
+        });
+
+
+}
 }
 module.exports = Pert;

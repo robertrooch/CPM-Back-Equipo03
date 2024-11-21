@@ -19,3 +19,16 @@ app.post('/nueva-actividad', (req, res) => {
         res.status(400).json({ error: error.message });
     }
 });
+
+app.post('/calcular-tiempos', (req, res) => {
+    try {
+        const resultado = pert.generarDiagrama();
+        res.json({ actividades: resultado });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
+app.listen(3000, () => {
+    console.log('Servidor escuchando en el puerto 3000');
+});

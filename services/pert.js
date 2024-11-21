@@ -29,6 +29,10 @@ class Pert {
         this.actividades = this.actividades.filter(act => act.id !== id);
     }
 
+    locateRect(nombre) {
+        return this.actividades.find(actividad => actividad.nombre === nombre) || null;
+    }
+
     earlyFinish(actividad) {
         if (!actividad.predecesores[0]) {
             actividad.nivel = 1;
@@ -61,5 +65,14 @@ class Pert {
         actividad.htotal = actividad.lfinish - actividad.efinish;
     }
 
+    generarDiagrama() {
+        let tiempoFinal = 0;
+        this.actividades.forEach(actividad => {
+            if (!actividad.efinish) {
+                this.earlyFinish(actividad);
+                tiempoFinal = Math.max(tiempoFinal, actividad.efinish);
+            }
+        });
+    }
 }
 module.exports = Pert;

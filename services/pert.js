@@ -3,12 +3,19 @@ class Pert {
         this.idActividad = 0;
         this.Actividades = [];
     }
-    nuevaActividad(nombre, duracion, predecesores) {
+    
+    nuevaActividad(nombre, tiempoOptimista, tiempoMasProbable, tiempoPesimista, predecesores) {
         this.idActividad += 1;
+
+        const duracion = (parseFloat(tiempoOptimista) + 4 * parseFloat(tiempoMasProbable) + parseFloat(tiempoPesimista)) / 6;
+
         const actividad = {
             id: this.idActividad,
             nombre,
-            duracion: parseInt(duracion),
+            tiempoOptimista: parseFloat(tiempoOptimista),
+            tiempoMasProbable: parseFloat(tiempoMasProbable),
+            tiempoPesimista: parseFloat(tiempoPesimista),
+            duracion: duracion,
             predecesores: predecesores.split(',').map(e => e.trim()),
             sucesores: [],
             estart: 0,
@@ -24,6 +31,7 @@ class Pert {
         }
         this.actividades.push(actividad);
     }
+
 
     eliminarActividad(id) {
         this.actividades = this.actividades.filter(act => act.id !== id);

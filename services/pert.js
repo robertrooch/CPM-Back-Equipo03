@@ -81,6 +81,14 @@ class Pert {
                 tiempoFinal = Math.max(tiempoFinal, actividad.efinish);
             }
         });
+
+        this.actividades.forEach(actividad => {
+            if (!actividad.lfinish) {
+                this.lateFinish(actividad, tiempoFinal);
+            }
+        });
+
+        return this.actividades;
     }
 }
 module.exports = Pert;

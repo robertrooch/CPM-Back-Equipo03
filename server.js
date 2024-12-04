@@ -29,6 +29,16 @@ app.post('/calcular-tiempos', (req, res) => {
     }
 });
 
+app.post('/limpiar-actividades', (req, res) => {
+    try {
+        pert.limpiarActividades();
+        //console.log('Actividades actuales después de limpiar:', pert.actividades);
+        res.status(200).json({ message: 'Actividades limpiadas correctamente' });
+    } catch (error) {
+        res.status(500).json({ error: error.message });
+    }
+});
+
 app.listen(3000, () => {
     console.log('Servidor escuchando en el puerto 3000');
 });

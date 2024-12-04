@@ -32,7 +32,6 @@ class Pert {
         this.actividades.push(actividad);
     }
 
-
     eliminarActividad(id) {
         this.actividades = this.actividades.filter(act => act.id !== id);
     }
@@ -90,5 +89,10 @@ class Pert {
 
         return this.actividades;
     }
+
+    limpiarActividades() {
+        this.idActividad = 0;
+        this.actividades = [];
+      }
 }
 module.exports = Pert;
